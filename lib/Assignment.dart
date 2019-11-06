@@ -55,7 +55,7 @@ class _State extends State<MainApp> {
         backgroundColor: Colors.green,
       ),
 
-      //footer tabs
+      //footer buttons different from bottom tabs
       persistentFooterButtons: <Widget>[
         new IconButton(
           icon: new Icon(Icons.person),
@@ -101,7 +101,7 @@ class _State extends State<MainApp> {
         backgroundColor: Colors.green,
       ),
 
-
+//bottom navigation tabs
       bottomNavigationBar: new BottomNavigationBar(
         items: _items,
         fixedColor: Colors.blue,
@@ -114,6 +114,7 @@ class _State extends State<MainApp> {
         },
       ),
 
+      //app actual body
       body: new Container(
         padding: new EdgeInsets.all(32.0),
         child: new Center(
