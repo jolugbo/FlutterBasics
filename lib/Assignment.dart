@@ -1,6 +1,7 @@
 import 'dart:ui' as prefix0;
 
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 void main() {
   runApp(new MaterialApp(home: new MainApp()));
@@ -10,20 +11,68 @@ class MainApp extends StatefulWidget {
   @override
   _State createState() => new _State();
 }
-
+enum Options {Yes, No,Maybe}
 class _State extends State<MainApp> {
   List<BottomNavigationBarItem> _items;
   int _value = 0;
   String _item = '';
+  String _notificationVar = '';
   String _CurrentTime = '';
-
+  final GlobalKey<ScaffoldState> _scaffoldState = new GlobalKey<ScaffoldState>();
   _setTime() => setState(() => _CurrentTime = DateTime.now().toString());
   _setValue(String value) => setState(() => _value = int.parse(value));
   _subValue() => setState(() => _value--);
   _addValue() => setState(() => _value++);
-
+_setNotificationValue(String value) => setState(()=> _notificationVar = value);
   //methods
+Future _showAlert(BuildContext context,String message) async{
+  return showDialog(context: context,child:
+  new AlertDialog(title: Text(message),
+      actions: <Widget>[FlatButton.icon(onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.exit_to_app), label: Text("Exit"))]));
+}
+Future _askUser()async{
+  switch(
+  await showDialog(context:context,
+      child:new SimpleDialog(
+        title:new Text("Do you like flutter "),
+      children: <Widget>[
+        SimpleDialogOption(child: Text("Yes!!!"),onPressed: () => {Navigator.pop(context,Options.Yes)},),
+        SimpleDialogOption(child: Text("No :("),onPressed: () =>  {Navigator.pop(context,Options.No)},),
+        SimpleDialogOption(child: Text("Maybe"),onPressed: () => {Navigator.pop(context,Options.Maybe)},),
+      ],)
 
+  )
+  ){
+    case Options.Yes:
+      _setValue("Yes");
+      break;
+    case Options.No:
+      _setValue("No");
+      break;
+    case Options.Maybe:
+      _setValue("Maybe");
+      break;
+  }
+}
+  // method to show modal view
+  void _showBottom(){
+    showModalBottomSheet<void>(context: context, builder: (BuildContext context){
+      return new Container(
+        padding: new EdgeInsets.all(15.0),
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Text("New Jazy Song ",style: new TextStyle(color: Colors.red,fontWeight: FontWeight.bold)),
+            new RaisedButton.icon(onPressed: () => Navigator.pop(context), icon: Icon(Icons.new_releases), label: Text("New"))
+          ],
+        ),
+      );
+    });
+  }
+void _showBar(){
+    _scaffoldState.currentState.showSnackBar(SnackBar(content: Text("Notification")));
+}
   //initialise d variables like a constructor...
   @override
   void initState() {
@@ -44,6 +93,7 @@ class _State extends State<MainApp> {
     return new Scaffold(
 
       //top bar/nav bar
+      key: _scaffoldState,
       appBar: new AppBar(
         title: new Text("Play"),
         actions: <Widget>[
@@ -123,6 +173,10 @@ class _State extends State<MainApp> {
         child: new Center(
           child: new Column(
             children: <Widget>[
+              new RaisedButton(onPressed: _showBottom,child: new Text("Refreash"),),
+              new RaisedButton(onPressed: () => _showAlert(context,"Flutter Dialog Test"),child: new Text("Alert"),),
+              new RaisedButton.icon(onPressed: _showBar, icon: Icon(Icons.notifications), label: Text("Notify Me")),
+              new RaisedButton.icon(onPressed: _askUser, icon: Icon(Icons.select_all), label: Text("Select Option")),
               new Text("$_value"),
 //              new TextField(
 //                decoration: InputDecoration(

@@ -20,6 +20,20 @@ class _State extends State<MainApp> {
   bool _value4 = false;
   double _value5 = 0.0;
 
+  void _showBottom(){
+    showModalBottomSheet<void>(context: context, builder: (BuildContext context){
+      return new Container(
+        padding: new EdgeInsets.all(15.0),
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Text("New Jazy Song Asset",style: new TextStyle(color: Colors.red,fontWeight: FontWeight.bold)),
+            new RaisedButton.icon(onPressed: () => Navigator.pop(context), icon: Icon(Icons.new_releases), label: Text("New"))
+          ],
+        ),
+      );
+    });
+  }
   void _onValue5Changed(double value) => setState(() => _value5 = value );
 
   Future _onDateSelected() async{
@@ -98,7 +112,8 @@ class _State extends State<MainApp> {
               new Text("Value: ${(_value5* 100).round()}"),
               new Slider(value: _value5, onChanged: _onValue5Changed,),
               new Text("Date Selected: $_value"),
-              new IconButton(icon: Icon(Icons.date_range), onPressed: _onDateSelected,iconSize: 40,)
+              new IconButton(icon: Icon(Icons.date_range), onPressed: _onDateSelected,iconSize: 40,),
+              new RaisedButton(onPressed: _showBottom,child: new Text("Refreash"),)
             ],
           ),
       ),
