@@ -20,15 +20,15 @@ class _State extends State<MainApp> {
   String _CurrentTime = '';
   final GlobalKey<ScaffoldState> _scaffoldState = new GlobalKey<ScaffoldState>();
   _setTime() => setState(() => _CurrentTime = DateTime.now().toString());
-  _setValue(String value) => setState(() => _value = int.parse(value));
+  _setValue(String value) => setState(() => _item = value);
   _subValue() => setState(() => _value--);
   _addValue() => setState(() => _value++);
-_setNotificationValue(String value) => setState(()=> _notificationVar = value);
+  _setNotificationValue(String value) => setState(()=> _notificationVar = value);
   //methods
 Future _showAlert(BuildContext context,String message) async{
   return showDialog(context: context,child:
   new AlertDialog(title: Text(message),
-      actions: <Widget>[FlatButton.icon(onPressed: () => Navigator.pop(context),
+      actions: <Widget>[RaisedButton.icon(onPressed: () => Navigator.pop(context),
           icon: Icon(Icons.exit_to_app), label: Text("Exit"))]));
 }
 Future _askUser()async{
@@ -63,7 +63,7 @@ Future _askUser()async{
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text("New Jazy Song ",style: new TextStyle(color: Colors.red,fontWeight: FontWeight.bold)),
+            new Text("New Jazzy Song ",style: new TextStyle(color: Colors.red,fontWeight: FontWeight.bold)),
             new RaisedButton.icon(onPressed: () => Navigator.pop(context), icon: Icon(Icons.new_releases), label: Text("New"))
           ],
         ),
@@ -173,18 +173,19 @@ void _showBar(){
         child: new Center(
           child: new Column(
             children: <Widget>[
+              new Text("$_value"),
+              new Text("$_item"),
+              new Text("$_CurrentTime"),
               new RaisedButton(onPressed: _showBottom,child: new Text("Refreash"),),
               new RaisedButton(onPressed: () => _showAlert(context,"Flutter Dialog Test"),child: new Text("Alert"),),
               new RaisedButton.icon(onPressed: _showBar, icon: Icon(Icons.notifications), label: Text("Notify Me")),
               new RaisedButton.icon(onPressed: _askUser, icon: Icon(Icons.select_all), label: Text("Select Option")),
-              new Text("$_value"),
 //              new TextField(
 //                decoration: InputDecoration(
 //                    icon: Icon(Icons.person_add), hintText: "Name"),
 //                onChanged: _setValue,
 //                keyboardType: TextInputType.number,
 //              ),
-              new Text("$_CurrentTime"),
             ],
           ),
         ),
