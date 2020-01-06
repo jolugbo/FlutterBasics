@@ -19,14 +19,18 @@ class _State extends State<MainApp>{
 
   void _onNameChange(String value) {
     setState(() => _value = 'Name: $value');
+    print(_value);
   }
   void _onAgeChange(String value) {
     setState(() => _age = 'Age: $value');
+    print(_age);
   }
 
   @override
   void initState(){
     _current = 0;
+    _value = '';
+    _age = '';
     _steps = <Step>[
       new Step(title: Text("user's name"), content: Container(padding: EdgeInsets.all(20),
         child: Center(child: Column(
@@ -41,7 +45,7 @@ class _State extends State<MainApp>{
       new Step(title: Text("users Record"), content: Container(padding: EdgeInsets.all(20),
         child: Center(child: Column(
           children: <Widget>[
-            Text(_value + ' '+ _age),
+            Text("$_value $_age Years"),
           ],),),)),
 
     ];
@@ -74,7 +78,8 @@ class _State extends State<MainApp>{
         child: new Center(
           child: new Column(
             children: <Widget>[
-              Stepper(steps: _steps,onStepCancel: _stepCancle,onStepContinue: _stepContinue,)
+              Stepper(steps: _steps,onStepCancel: _stepCancle,onStepContinue: _stepContinue,currentStep: _current,),
+              Text("$_value $_age Years")
             ],
           ),
         ),
