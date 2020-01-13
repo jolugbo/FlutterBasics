@@ -30,7 +30,7 @@ class _State extends State<MainApp>{
     _chartdata = new List<charts.Series<Sales, String>>();
 
     final rnd = new Random();
-    for(int i = 2010;i <2019;i++){
+    for(int i = 2016;i <2019;i++){
       _Laptop.add(new Sales(i.toString(), rnd.nextInt(1000)));
       _Desktop.add(new Sales(i.toString(), rnd.nextInt(1000)));
     }
@@ -75,7 +75,9 @@ class _State extends State<MainApp>{
           child: new Column(
             children: <Widget>[
               new Text("Sales Data"),
-              new Expanded(child: new charts.BarChart(_chartdata))
+              new Expanded(child: new charts.BarChart(
+                _chartdata,
+              ))
             ],
           ),
         ),
