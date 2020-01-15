@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class Authenticator extends StatefulWidget{
   Authenticator({Key key, this.onAuthenticated});
   final ValueChanged<bool> onAuthenticated;
+
   @override
   _AuthenticatorState createState() => new _AuthenticatorState(onAuthenticated: onAuthenticated);
 
@@ -11,8 +12,10 @@ class Authenticator extends StatefulWidget{
 class _AuthenticatorState extends State<Authenticator>{
   TextEditingController _user;
   TextEditingController _pass;
+
   final ValueChanged<bool> onAuthenticated;
   _AuthenticatorState({Key key, this.onAuthenticated});
+
   void _onPressed(){
     if (_user.text == "user1" && _pass.text == "Admin") {
       onAuthenticated(true);
