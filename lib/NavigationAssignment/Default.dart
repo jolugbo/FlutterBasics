@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+
+class Default extends StatefulWidget{
+  @override
+  _DefaultState createState() => new _DefaultState();
+
+}
+class _DefaultState extends State<Default>{
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Home page"),
+      ),
+      body: new Container(
+        padding: new EdgeInsets.all(32.0),
+        child: new Center(
+          child: new Column(
+            children: <Widget>[
+              new Text("Home page"),
+              RaisedButton(onPressed: (){Navigator.of(context).pushNamed('/Profile');},child: Text("Profile"),),
+              RaisedButton(onPressed: (){Navigator.of(context).pop();},child: Text("Log Out"),)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
