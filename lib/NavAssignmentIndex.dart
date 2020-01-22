@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget{
       routes: <String, WidgetBuilder>{
         "/Login": (BuildContext context) => new Login(),
         "/Default": (BuildContext context) => new Default(),
-        "/Profile": (BuildContext context) => new Profile(),
+        "/Profile": (BuildContext context) => new Profile("FEMI"),
       },
       home: new Login(),
     );

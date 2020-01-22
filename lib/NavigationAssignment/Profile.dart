@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 
 class Profile extends StatefulWidget{
+  Profile(this._data);
+  String _data;
   @override
-  _ProfileState createState() => new _ProfileState();
+  _ProfileState createState() => new _ProfileState(_data);
 
 }
 class _ProfileState extends State<Profile>{
+  _ProfileState(this._data);
+  String _data;
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -18,7 +22,7 @@ class _ProfileState extends State<Profile>{
         child: new Center(
           child: new Column(
             children: <Widget>[
-              new Text("Profile Page"),
+              new Text("$_data Profile Page"),
               RaisedButton(onPressed: (){Navigator.of(context).pop();},child: Text("Back"),)
             ],
           ),
