@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
-import 'Home.dart';
-import 'Contact.dart';
 
-class About extends StatefulWidget{
+
+class SettingsPage extends StatefulWidget{
   @override
-  _AboutState createState() => new _AboutState();
+  _SettingsPageState createState() => new _SettingsPageState();
 
 }
-class _AboutState extends State<About>{
+class _SettingsPageState extends State<SettingsPage>{
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("About Page"),
+        title: new Text("Settings Page"),
       ),
       body: new Container(
         padding: new EdgeInsets.all(32.0),
         child: new Center(
           child: new Column(
             children: <Widget>[
-              Text("About Page"),
-              RaisedButton(onPressed: (){Navigator.of(context).pushNamed('/Contact');},child: Text("Next Page"),),
+              new Text("Setup Page"),
               RaisedButton(onPressed: (){Navigator.of(context).pop();},child: Text("Back"),)
             ],
           ),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 class Contact extends StatefulWidget{
   @override
   _ContactState createState() => new _ContactState();
-
 }
 class _ContactState extends State<Contact>{
   @override
@@ -18,8 +17,8 @@ class _ContactState extends State<Contact>{
         child: new Center(
           child: new Column(
             children: <Widget>[
-              Text("About Page"),
-              RaisedButton(onPressed: null,child: Text("Back"),)
+              Text("Contact Page"),
+              RaisedButton(onPressed: (){Navigator.of(context).pop();},child: Text("Back"),)
             ],
           ),
         ),

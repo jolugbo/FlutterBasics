@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'SubPages/Home.dart';
 import 'SubPages/About.dart';
 import 'SubPages/Contact.dart';
-void main()  => new MyPpp();
-class  MyPpp extends StatelessWidget{
+void main()  => runApp( new MyApp());
+class  MyApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
